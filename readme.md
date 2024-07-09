@@ -1,4 +1,3 @@
-Here's the content for your `README.md` file:
 
 ```markdown
 # Book Search API and React App
