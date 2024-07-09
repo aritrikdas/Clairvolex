@@ -18,3 +18,19 @@ export const fetchBooks = async (searchParams) => {
     throw error;
   }
 };
+
+export const fetchGenre = async () => {
+  try {
+    const url = `${baseUrl}/api/v1.0/books/genre`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.log("Error fetching genre:", error);
+    // throw error;
+    // toast.error('Error fetching genre');
+    return error;
+  }
+};

@@ -31,7 +31,7 @@
   "jest": {
     "testEnvironment": "node",
     "collectCoverage": true,
-    "coverageDirectory": "./public/coverage/",
+    "coverageDirectory": "./public/coverage/api",
     "testMatch": [
       "**/?(*.)+(spec|test).js"
     ],

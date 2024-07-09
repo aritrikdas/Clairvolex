@@ -1,6 +1,10 @@
-import React, { useState, useCallback, useEffect  } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import { fetchGenre } from '../../services/bookService';
+import toast, { Toaster } from 'react-hot-toast';
 
 const SearchForm = ({ onSearch }) => {
+  const [genres, setGenres] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useState({
     q: '',
     genre: '',
@@ -14,11 +18,32 @@ const SearchForm = ({ onSearch }) => {
     const queryParams = new URLSearchParams(window.location.search);
     const qParam = queryParams.get('q') || ''; // Default to '' if q is not present
 
-    // Update searchParams state with q from URL if available
-    setSearchParams((prevParams) => ({
-      ...prevParams,
-      q: qParam,
-    }));
+
+    // Fetch genres on component load
+    const loadGenres = async () => {
+      try {
+        const response = await fetchGenre();
+
+        console.log("load Genres response ", response);
+        if (response.status === 'success') {
+          setGenres(response.data); // Save fetched genres
+          // Optionally, set the first genre as default in searchParams
+          setSearchParams((prevParams) => ({
+            ...prevParams,
+            q: qParam,
+            genre: queryParams.get('genre') || '',
+          }));
+
+          console.log("genres >>>", JSON.stringify(genres));
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error("Error fetching genres:", error);
+      }
+    };
+
+    loadGenres();
+
   }, []);
 
   const debounce = (func, delay) => {
@@ -50,7 +75,7 @@ const SearchForm = ({ onSearch }) => {
   };
 
   return (
-    <form  className="container mt-3">
+    <form className="container mt-3" role='form'>
       <div className="row g-3 align-items-center">
         <div className="col-auto">
           <input
@@ -62,17 +87,29 @@ const SearchForm = ({ onSearch }) => {
             onChange={handleChange}
           />
         </div>
-        <div className="col-auto">
-          <input
-            type="text"
-            name="genre"
-            className="form-control"
-            placeholder="Genre"
-            value={searchParams.genre}
-            onChange={handleChange}
-          />
+        <div className="form-group">
+          <label htmlFor="genreSelect">Select Genre</label>
+          {isLoading ? (
+            <p>Loading genres...</p> // Step 2: Display a loader
+          ) : (
+            <select
+              className="form-control"
+              id="genreSelect"
+              name="genre"
+              value={searchParams.genre}
+              onChange={handleChange}
+              disabled={isLoading}
+            >
+              <option value="">Select Genre</option>
+              {genres.map((genre) => (
+                <option key={genre.genre_id} value={genre.genre_id}>
+                  {genre.name}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
-       
+
         <div className="col-auto">
           <div className="form-check">
             <input
@@ -88,7 +125,7 @@ const SearchForm = ({ onSearch }) => {
             </label>
           </div>
         </div>
-       
+
       </div>
     </form>
   );

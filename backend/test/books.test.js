@@ -61,3 +61,20 @@ describe('Books API', () => {
     });
     
 });
+
+
+describe('GET /genre', () => {
+    test('It should respond with an array of genres', async () => {
+      const response = await request(app).get('/api/v1.0/books/genre');
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toEqual({
+        status: 'success',
+        data: [
+          { genre_id: 4, name: 'Fantasy' },
+          { genre_id: 1, name: 'Fiction' },
+          { genre_id: 2, name: 'Non-Fiction' },
+          { genre_id: 3, name: 'Science Fiction' }
+        ]
+      });
+    });
+  });

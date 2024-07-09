@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Search App</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body { padding-top: 20px; }
+        .search-bar { margin-bottom: 20px; }
+        .advanced-search { margin-bottom: 20px; }
+        .search-results { margin-top: 20px; }
+        .card { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <input type="text" class="form-control search-bar" placeholder="Search for books...">
+            <div class="card advanced-search">
+                <div class="card-body">
+                    <h5 class="card-title">Advanced Search</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="author" class="form-label">Author</label>
+                            <input type="text" class="form-control" id="author">
+                        </div>
+                        <div class="mb-3">
+                            <label for="publicationDate" class="form-label">Publication Date</label>
+                            <input type="date" class="form-control" id="publicationDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre" class="form-label">Genre</label>
+                            <select class="form-select" id="genre">
+                                <option selected>Choose...</option>
+                                <option value="1">Fiction</option>
+                                <option value="2">Non-Fiction</option>
+                                <!-- Add more genres as options -->
+                            </select>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="inStock">
+                            <label class="form-check-label" for="inStock">In Stock Only</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+            <div class="search-results">
+                <!-- Search results will be inserted here -->
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
