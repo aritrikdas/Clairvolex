@@ -6,7 +6,7 @@ This project is a Node.js-based REST API for retrieving a list of books based on
 
 ## Features
 
-- **Book Search**: Retrieve a list of books based on various search criteria including title, author, published date range, and genre.
+- **Book Search**: Retrieve a list of books based on various search criteria including title, author, and genre.
 - **Sorting**: Sort books by title, author, and publication date.
 - **Pagination**: Paginate results with page number and size.
 - **Error Handling**: Appropriate HTTP status codes and error messages for invalid requests and unexpected situations.
@@ -37,8 +37,8 @@ This project is a Node.js-based REST API for retrieving a list of books based on
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/book-search-api.git
-cd book-search-api
+https://github.com/aritrikdas/Clairvolex.git
+cd Clairvolex/backend
 ```
 
 2. **Install dependencies**
@@ -74,11 +74,7 @@ docker build -t book-search-api .
 docker run -d -p 3000:3000 --env-file .env book-search-api
 ```
 
-Alternatively, you can use Docker Compose:
-
-```bash
-docker-compose up --build
-```
+Alternatively, you can run locally:
 
 6. **Start the server**
 
@@ -152,7 +148,3 @@ book-search-api/
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-Feel free to modify the content as per your specific project details and requirements.
