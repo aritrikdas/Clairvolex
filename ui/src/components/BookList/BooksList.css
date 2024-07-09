@@ -1,0 +1,12 @@
+/* BooksList.css */
+.books-list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px; /* Adjust based on your needs */
+  }
+  
+  .books-container {
+    overflow-y: auto;
+    flex-grow: 1;
+  }
